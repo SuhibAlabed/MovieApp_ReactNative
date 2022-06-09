@@ -40,8 +40,8 @@ const HomeScreen = ({navigation}) => {
      }
 
      useEffect(()=>{
-        getMoviesGenres();
-        getMovies(movieType);
+        getMoviesGenres().then(()=> getMovies(movieType));
+       
         
      },[])
 

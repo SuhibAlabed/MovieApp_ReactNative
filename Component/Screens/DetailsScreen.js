@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import {View, StyleSheet,Text,Image,ScrollView} from 'react-native';
+import {View, StyleSheet,Text,Image,ScrollView,ActivityIndicator} from 'react-native';
 import styles from '../Styles/styles';
 const DetailsScreen = ({ navigation, route }) => {
     const [isLoading,setLoading]=useState(true);
@@ -63,7 +63,10 @@ const DetailsScreen = ({ navigation, route }) => {
     }
     return (
         <ScrollView>
-            <View style={styles.section1}>
+            {!isLoading?
+            <View>
+                
+                <View style={styles.section1}>
                 <Image style={styles.ImgDetails} source={{uri: `https://image.tmdb.org/t/p/w500/${data["poster_path"]}`}}/>
                 <Text style={styles.titleDetails}>{data["title"]}</Text>
                 <Text style={styles.rateDetails}>{(data["vote_average"]*10)+"%"}</Text>
@@ -89,6 +92,9 @@ const DetailsScreen = ({ navigation, route }) => {
                             </View>
                 </View>
              </View>
+             
+             </View>:<ActivityIndicator/>}
+           
         </ScrollView>
     );
 }
